@@ -3,6 +3,9 @@ import { StyleSheet, Text, View ,Button,TextInput} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import FirstPage from "./pages/FirstPage";
+import SecondPage from "./pages/SecondPage";
+import ThirdPage from "./pages/ThirdPage";
 
 
 
@@ -56,13 +59,16 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-      initialRouteName="Home"
+      initialRouteName="First Page"
       screenOptions={{
         headerStyle:{backgroundColor : 'lightpink'},
         headerTintColor:'#fff',
         headerTitleStyle:{fontWeight:'bold',fontsize:30}
       }}
       >
+         <Stack.Screen name="First Page" component={FirstPage} />
+         <Stack.Screen name="Second Page" component={SecondPage} />
+         <Stack.Screen name="Third Page" component={ThirdPage} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="CreatePost" component={CreatePostScreen} />
       </Stack.Navigator>
