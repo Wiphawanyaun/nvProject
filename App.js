@@ -1,81 +1,64 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import FirstPage from "./pages/FirstPage";
-import SecondPage from "./pages/SecondPage";
-import ThirdPage from "./pages/ThirdPage";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
-function HomeScreen({ navigation, route }) {
-  React.useEffect(() => {
-    if (route.params?.post) {
-      //Post Updated,do something with 'route.params.post'
-    }
-  }, [route.params?.post]);
+import { DrawerActions, NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from "@react-navigation/drawer";
 
+function FeedScreen() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button
-        title="Create Post"
-        onPress={() => navigation.navigate("CreatePost")}
-      />
-      <Text style={{ margin: 10 }}>Post: {route.params?.post} </Text>
+      <Text>Feed Screen</Text>
     </View>
   );
 }
 
-function CreatePostScreen({ navigation, route }) {
-  const [postText, setpostText] = React.useState("");
+function ArticleScreen() {
   return (
-    // Fragment
-    <>
-      <TextInput
-        multiline
-        placeholder="Please text here"
-        style={{ height: 200, padding: 10, backgroundColor: "White" }}
-        onChangeText={setpostText}
-        value={postText}
-      />
-      <Button
-        title="Click"
-        onPress={() => {
-          // Pass params back to homescreen function
-          navigation.navigate("Home", { post: postText });
-        }}
-      />
-    </>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Article Screen</Text>
+    </View>
   );
 }
 
-const Stack = createNativeStackNavigator();
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem label="Help" onPress={() => alert("Link to help")} />
+    </DrawerContentScrollView>
+  );
+}
 
-export default function App() {
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator 
+    useLegacyImplementation
+    drawerContent={(props) => <CustomDrawerContent{...props}/>}
+    screenOptions = {{drawerStyle:{
+      backgroundColor :'lightpink',
+      width:240
+    }}}
+    >
+      <Drawer.Screen name="Feed" component={FeedScreen} />
+      <Drawer.Screen name="Article" component={ArticleScreen} />
+    </Drawer.Navigator>
+  );
+}
+
+const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="First Page"
-        screenOptions={{
-          headerStyle: { backgroundColor: "lightpink" },
-          headerTintColor: "#fff",
-          headerTitleStyle: { fontWeight: "bold", fontsize: 30 },
-        }}
-      >
-        <Stack.Screen name="First Page"  component={FirstPage} />
-        <Stack.Screen name="Second Page" component={SecondPage} />
-        <Stack.Screen name="Third Page"  component={ThirdPage} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="CreatePost" component={CreatePostScreen} />
-      </Stack.Navigator>
+      <MyDrawer/>
     </NavigationContainer>
   );
-}
+};
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
+export default App;
