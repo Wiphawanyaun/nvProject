@@ -6,7 +6,7 @@ const ThirdPage = ({ navigation }) => {
   return (
     <View style={style1.container}>
       <View style={style1.container}>
-        <Text style={style1.textTopStyle}>This is the Third Page</Text>
+        <Text style={style1.textTopStyle}> This is the Third Page </Text>
 
         <Button
           title="Go to first page"
@@ -21,7 +21,7 @@ const ThirdPage = ({ navigation }) => {
             navigation.navigate("Second Page");
           }}
         />
-      </View>s
+      </View>
       <Text style={style1.textBottomStyle}>
         Thai-Nichi insitute of Technology
       </Text>

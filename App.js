@@ -61,9 +61,9 @@ export default function App() {
           headerTitleStyle: { fontWeight: "bold", fontsize: 30 },
         }}
       >
-        <Stack.Screen name="First Page" component={FirstPage} />
+        <Stack.Screen name="First Page"  component={FirstPage} />
         <Stack.Screen name="Second Page" component={SecondPage} />
-        <Stack.Screen name="Third Page" component={ThirdPage} />
+        <Stack.Screen name="Third Page"  component={ThirdPage} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="CreatePost" component={CreatePostScreen} />
       </Stack.Navigator>

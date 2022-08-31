@@ -16,7 +16,7 @@ const style1 = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     color: "grey",
-  },
+  }
 });
 
 export { style1 };
