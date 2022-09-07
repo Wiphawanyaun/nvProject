@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  Image,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 import {
   DrawerActions,
@@ -21,7 +13,6 @@ import {
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
-
 import HomeScreen from "./screens/HomeScreen";
 
 const MyTheme = {
@@ -54,19 +45,18 @@ function NotificationsScreen() {
 
 function CustomDrawerContent(props) {
   return (
-    <SafeAreaView>
-      <Image
-        source={require("./assets/react_logo.png")}
-        style={styles.sideMenuProfileIcon}
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem
+        label="Close drawer"
+        onPress={() => props.navigation.closeDrawer()}
       />
-      <DrawerContentScrollView {...props}>
-        <DrawerItemList {...props} />
-        <DrawerItem
-          label="Close drawer"
-          onPress={() => props.navigation.closeDrawer()}
-        />
-      </DrawerContentScrollView>
-    </SafeAreaView>
+
+      <DrawerItem
+        label="Toggle  drawer"
+        onPress={() => props.navigation.toggleDrawer()}
+      />
+    </DrawerContentScrollView>
   );
 }
 
@@ -84,21 +74,11 @@ function MyDrawer() {
       //   },
       // }}
     >
-      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="Feed" component={FeedScreen} />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
     </Drawer.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  sideMenuProfileIcon: {
-    resizeMode: "center",
-    width: 100,
-    height: 100,
-    borderRadius: 100 / 2,
-    alignSelf: "center",
-  },
-});
 
 const App = () => {
   return (

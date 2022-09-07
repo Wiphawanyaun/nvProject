@@ -10,11 +10,9 @@ const HomeScreen = ({ navigation }) => {
       {/* <MaterialCommunityIcons name="flower-tulip" size={30} color="lightpink" /> */}
       <Text>HomeScreen</Text>
       <Button
-        title="เกี่ยวกับเรา"
+        title="open Drawer"
         onPress={() =>
-          navigation.navigate("About", {
-            email: "reactnative.tni.ac.th",
-          })
+          navigation.openDrawer()
         }
       />
     </View>
