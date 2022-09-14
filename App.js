@@ -80,9 +80,8 @@ function MyDrawer() {
 const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
-      <MyDrawer>
-        <Mytabs />
-      </MyDrawer>
+      <MyDrawer/>
+        
     </NavigationContainer>
   );
 };
