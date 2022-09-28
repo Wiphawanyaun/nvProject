@@ -14,16 +14,35 @@ import axios from "axios";
 const ProductScreen = () => {
   const [Product, setProduct] = useState([]);
 
-  useEffect(() => {
-    const getData = async () => {
-      const res = await axios.get("https://api.codingthailand.com/api/course");
-      //   console.log(res.data.data);
-      //   alert(JSON.stringify(res.data.data))
-      setProduct(res.data.data);
-    };
+  const getData = async () => {
+    const res = await axios.get("https://api.codingthailand.com/api/course");
+    console.log(res.data.data);
+    setProduct(res.data.data);
+  };
 
+  useEffect(() => {
     getData();
-  });
+  }, []);
+
+  const _renderItem = ({ item }) => {
+    return (
+      <View>
+        <View style={styles.container}>
+          <Image
+            style={styles.thumbnail}
+            source={{ uri: item.picture }}
+            resizeMode="cover"
+          />
+          <View style={styles.dataContainer}>
+            <View style={styles.dataContent}>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.detail}>{item.detail}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  };
 
   return (
     <View>
@@ -31,17 +50,7 @@ const ProductScreen = () => {
         data={Product}
         keyExtractor={(item, index) => item.id.toString()}
         ItemSeparatorComponent={ItemSeparatorView}
-        renderItem={({ item }) => (
-          <View style={styles.container}>
-            <Image style={styles.thumbnail} source={{ uri: item.picture }} />
-            <View style={styles.dataContainer}>
-              <View style={styles.dataContent}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.detail}>{item.detail}</Text>
-              </View>
-            </View>
-          </View>
-        )}
+        renderItem={_renderItem}
       />
     </View>
   );
