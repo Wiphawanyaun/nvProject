@@ -40,23 +40,11 @@ const DetailScreen = ({ navigation, route }) => {
     }
   };
 
-  if (error) {
-    //ถ้ามี error เกิดขึ้นจะ return ui ข้างล่างนี้
-    return (
-      <View style={styles.container}>
-        <Text>{error.message}</Text>
-        <Text>เกิดข้อผิดพลาด ไม่สามารถติดต่อกับเซิร์ฟเวอร์ได้</Text>
-      </View>
-    );
-  }
-
-  const _onRefresh = () => {
-    getData();
-  };
-
   useEffect(() => {
     getData(id);
   }, [id]);
+
+ 
 
   if (loading === true) {
     return (
@@ -84,6 +72,10 @@ const DetailScreen = ({ navigation, route }) => {
     );
   };
 
+  const _onRefresh = () => {
+    getData(id);
+  };
+  
   return (
     <View style={{ flex: 1, padding: 20 }}>
       <FlatList
